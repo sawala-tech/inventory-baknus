@@ -1,5 +1,5 @@
 @extends('components.layout.main.app')
-@section('title', 'E-Arsip || Laporan Barang')
+@section('title', 'Play Shop || Laporan Barang')
 @section('content')
     @if (session('message'))
         <div>
@@ -12,7 +12,7 @@
         <div class="justify-content-between mb-3 d-flex">
             <a href="/export/barang"
                 class="rounded-lg bg-sea p-2 text-white align-items-center d-flex border-0 text-decoration-none"
-                id='exportLaporanMasuk'>
+                id='exportLaporanBarang'>
                 <i class="fas fa-download"></i>
                 <span class="px-2">
                     Export Data

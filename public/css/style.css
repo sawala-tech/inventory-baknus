@@ -95,3 +95,11 @@ button:focus {
 .list-style-none {
     list-style: none !important;
 }
+
+.right-0 {
+    right: 0 !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}

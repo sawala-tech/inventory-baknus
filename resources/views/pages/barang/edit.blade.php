@@ -1,5 +1,5 @@
 @extends('components.layout.main.app')
-@section('title', 'E-Arsip || Edit Barang')
+@section('title', 'Play Shop || Edit Barang')
 @section('content')
     <div class="container-fluid p-0">
         <div>
@@ -51,7 +51,8 @@
                             <label for="tanggal_pembelian" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
                             <div class="col-sm-10">
                                 <input type="date" name="tanggal_pembelian"
-                                    class="form-control @error('tanggal_pembelian') is-invalid @enderror" id="tanggal_pembelian"
+                                    class="form-control @error('tanggal_pembelian') is-invalid @enderror"
+                                    id="tanggal_pembelian"
                                     value="{{ old('tanggal_pembelian') ? old('tanggal_pembelian') : $tanggal_pembelian }}">
                                 @error('tanggal_pembelian')
                                     <div class="invalid-feedback">
@@ -93,7 +94,8 @@
                             <label for="customFile" class="col-sm-2 col-form-label">Foto</label>
                             <div class="col-sm-10">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('foto') is-invalid @enderror" id="customFile" name="foto">
+                                    <input type="file" class="custom-file-input @error('foto') is-invalid @enderror"
+                                        id="customFile" name="foto">
                                     <label class="custom-file-label" for="customFile" value="{{ $foto }}">Choose
                                         file</label>
                                     @error('foto')
