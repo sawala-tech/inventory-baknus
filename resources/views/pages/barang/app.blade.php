@@ -1,5 +1,5 @@
 @extends('components.layout.main.app')
-@section('title', 'E-Arsip || Data Barang')
+@section('title', 'Play Shop || Data Barang')
 @section('content')
     <div class="container-fluid p-0 mb-5">
         <h2>Data Barang</h2>
@@ -51,7 +51,10 @@
                             <td>{{ $item->tanggal_pembelian }}</td>
                             <td>{{ $item->kategori }}</td>
                             <td>{{ $item->keterangan }}</td>
-                            <td><img src="{{ asset('storage/lampiran/'.$item->foto) }}" alt=""></td>
+                            <td>
+                                <img src="{{ asset('/storage/lampiran/' . $item->foto) }}" style="width: 80px"
+                                    alt="" />
+                            </td>
                             <td class="d-flex flex-row">
                                 <button onclick="window.location.href='/barang/detail/{{ $item->id }}'"
                                     class="bg-primary rounded border-0 align-items-center d-flex p-2">
@@ -79,7 +82,8 @@
                                             fill="white" />
                                     </svg>
                                 </button>
-                                <form action="{{ route('barang.destroy', $item->id) }}" method="POST">
+                                <form action="{{ route('barang.destroy', $item->id) }}" method="POST"
+                                    onclick="return confirm('Yakin ingin menghapus data?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-danger rounded border-0 align-items-center d-flex p-2">

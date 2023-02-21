@@ -20,11 +20,10 @@ class barang extends Model
     ];
 
     public static function search($search){
-        $allData=barang::where('nomor_surat', 'like', '%'.$search.'%')
-        ->orWhere('judul_surat', 'like', '%'.$search.'%')
+        $allData=barang::where('kode_barang', 'like', '%'.$search.'%')
+        ->orWhere('nama_barang', 'like', '%'.$search.'%')
         ->orWhere('kategori', 'like', '%'.$search.'%')
-        ->orWhere('tanggal_keluar', 'like', '%'.$search.'%')
-        ->orWhere('tujuan_surat', 'like', '%'.$search.'%')
+        ->orWhere('tanggal_pembelian', 'like', '%'.$search.'%')
         ->orWhere('keterangan', 'like', '%'.$search.'%')
         ->get();
         return $allData;

@@ -85,10 +85,10 @@ class BarangController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SuratMasuk  $suratMasuk
+     * @param  \App\Models\barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function show(SuratMasuk $suratMasuk)
+    public function show(barang $barang)
     {
         //
     }
@@ -96,7 +96,7 @@ class BarangController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\barang  $suratMasuk
+     * @param  \App\Models\barang  $barang
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -110,7 +110,7 @@ class BarangController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\barang  $suratMasuk
+     * @param  \App\Models\barang  $barang
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -152,7 +152,7 @@ class BarangController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\barang  $suratMasuk
+     * @param  \App\Models\barang  $barang
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

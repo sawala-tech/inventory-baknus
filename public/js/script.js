@@ -61,12 +61,19 @@ $(document).ready(function () {
     });
     $("#search-input").keyup(function () {
         table.search(this.value).draw();
-        document
-            .querySelector("#exportLaporanMasuk")
-            .setAttribute("href", "/export/surat-masuk?search=" + this.value);
-        document
-            .querySelector("#exportLaporanKeluar")
-            .setAttribute("href", "/export/surat-keluar?search=" + this.value);
+        const dataSearch = table
+            .search(this.value)
+            .row({ search: "applied" })
+            .data();
+        if (dataSearch) {
+            document
+                .querySelector("#exportLaporanBarang")
+                .setAttribute("href", "/export/barang?search=" + this.value);
+        } else {
+            document
+                .querySelector("#exportLaporanBarang")
+                .setAttribute("href", "#");
+        }
     });
 });
 

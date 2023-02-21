@@ -1,5 +1,5 @@
 @extends('components.layout.main.app')
-@section('title', 'E-Arsip || Tambah Barang')
+@section('title', 'Play Shop || Tambah Barang')
 @section('content')
     <div class="container-fluid p-0">
         <div>
@@ -43,8 +43,8 @@
                             <label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
                             <div class="col-sm-10">
                                 <input type="date" name="tanggal_pembelian"
-                                    class="form-control @error('tanggal_pembelian') is-invalid @enderror" id="tanggal_pembelian"
-                                    value="{{ old('tanggal_pembelian') }}">
+                                    class="form-control @error('tanggal_pembelian') is-invalid @enderror"
+                                    id="tanggal_pembelian" value="{{ old('tanggal_pembelian') }}">
                                 @error('tanggal_pembelian')
                                     <div class="invalid-feedback">
                                         {{ $errors->first('tanggal_pembelian') }}
@@ -63,9 +63,11 @@
                                     </option>
                                     <option value="pakaian pria" @if (old('kategori') == 'pakaian pria') selected @endif>
                                         Pakaian Pria</option>
-                                    <option value="pakaian wanita" @if (old('kategori') == 'pakaian wanita') selected @endif>Pakaian Wanita
+                                    <option value="pakaian wanita" @if (old('kategori') == 'pakaian wanita') selected @endif>Pakaian
+                                        Wanita
                                     </option>
-                                    <option value="kebutuhan rumah tangga" @if (old('kategori') == 'kebutuhan rumah tangga') selected @endif>Kebutuhan Rumah Tangga</option>
+                                    <option value="kebutuhan rumah tangga"
+                                        @if (old('kategori') == 'kebutuhan rumah tangga') selected @endif>Kebutuhan Rumah Tangga</option>
                                     <option value="makanan" @if (old('kategori') == 'makanan') selected @endif>
                                         Makanan</option>
                                 </select>

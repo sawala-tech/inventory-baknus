@@ -1,5 +1,5 @@
 @extends('components.layout.main.app')
-@section('title', 'E-Arsip || Barang')
+@section('title', 'Play Shop || Detail Barang')
 @section('content')
     <div class="container-fluid p-0">
         <div>
@@ -44,7 +44,8 @@
                         <i class="fas fa-edit"></i>
                         <span>Edit</span>
                     </button>
-                    <form action="{{ route('barang.destroy', $barang->id) }}" method="POST" class="d-inline-flex">
+                    <form action="{{ route('barang.destroy', $barang->id) }}" method="POST" class="d-inline-flex"
+                        onclick="return confirm('Yakin ingin menghapus data?')">
                         @csrf
                         @method('DELETE')
                         <button class="bg-danger p-2 text-white rounded-lg border-0 mr-1" type="submit">
