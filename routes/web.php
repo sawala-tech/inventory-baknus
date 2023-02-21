@@ -17,7 +17,9 @@ use App\Http\Controllers\BarangController;
 */
 
 Route::get('/', Authentication::class)->name('login')->middleware('guest');
+Route::get('/register', [Authentication::class, 'register'])->name('register')->middleware('guest');
 Route::post('/login', [Authentication::class, 'login'])->middleware('guest');
+Route::post('/register', [Authentication::class, 'save'])->middleware('guest');
 Route::post('/logout', [Authentication::class, 'logout'])->middleware('auth');
 
 Route::get('/barang/laporan', [BarangController::class, 'laporan'])->middleware('auth');

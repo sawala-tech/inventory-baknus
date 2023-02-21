@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\User;
+
 
 
 class Authentication extends Controller
@@ -17,6 +22,33 @@ class Authentication extends Controller
     public function __invoke(Request $request)
     {
         return view('pages.auth.app');
+    }
+
+    public function register()
+    {
+        return view('pages.auth.register');
+    }
+
+    public function save(Request $request)
+    {
+        $validate=$request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users',
+            'password'=>'required',
+            'password_confirmation'=>'required|same:password'
+        ]);
+
+        if($validate){
+            $user=new User;
+            $user->name=$request->name;
+            $user->email=$request->email;
+            $user->password=bcrypt($request->password);
+            $user->save();
+            return redirect('/')->with('success','Berhasil mendaftar');
+        }
+
+        return back()->with('error','Gagal mendaftar');
+    
     }
     
     public function login(Request $request)
