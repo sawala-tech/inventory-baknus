@@ -5,27 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SuratMasuk extends Model
+class barang extends Model
 {
-    protected $table = 'SuratMasuk';
+    protected $table = 'barang';
     use HasFactory;
 
     protected $fillable = [
-        'nomor_surat',
-        'judul_surat',
+        'kode_barang',
+        'nama_barang',
+        'tanggal_pembelian',
         'kategori',
-        'tanggal_masuk',
-        'asal_surat',
         'keterangan',
-        'lampiran'
+        'foto'
     ];
 
     public static function search($search){
-        $allData=SuratMasuk::where('nomor_surat', 'like', '%'.$search.'%')
+        $allData=barang::where('nomor_surat', 'like', '%'.$search.'%')
         ->orWhere('judul_surat', 'like', '%'.$search.'%')
         ->orWhere('kategori', 'like', '%'.$search.'%')
-        ->orWhere('tanggal_masuk', 'like', '%'.$search.'%')
-        ->orWhere('asal_surat', 'like', '%'.$search.'%')
+        ->orWhere('tanggal_keluar', 'like', '%'.$search.'%')
+        ->orWhere('tujuan_surat', 'like', '%'.$search.'%')
         ->orWhere('keterangan', 'like', '%'.$search.'%')
         ->get();
         return $allData;

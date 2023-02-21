@@ -43,15 +43,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($suratMasuk as $item)
+                    @foreach ($barang as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->nomor_surat }}</td>
-                            <td>{{ $item->judul_surat }}</td>
+                            <td>{{ $item->kode_barang }}</td>
+                            <td>{{ $item->nama_barang }}</td>
+                            <td>{{ $item->tanggal_pembelian }}</td>
                             <td>{{ $item->kategori }}</td>
-                            <td>{{ $item->asal_surat }}</td>
-                            <td>{{ $item->tanggal_masuk }}</td>
                             <td>{{ $item->keterangan }}</td>
+                            <td><img src="{{ asset('storage/lampiran/'.$item->foto) }}" alt=""></td>
                             <td class="d-flex flex-row">
                                 <button onclick="window.location.href='/barang/detail/{{ $item->id }}'"
                                     class="bg-primary rounded border-0 align-items-center d-flex p-2">

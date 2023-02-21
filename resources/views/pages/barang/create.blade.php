@@ -14,27 +14,40 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group row">
-                            <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat</label>
+                            <label for="nomor_surat" class="col-sm-2 col-form-label">Kode Barang</label>
                             <div class="col-sm-10">
-                                <input type="text" name="nomor_surat"
-                                    class="form-control @error('nomor_surat') is-invalid @enderror" id="nomor_surat"
-                                    placeholder="Nomor Surat..." value="{{ old('nomor_surat') }}">
-                                @error('nomor_surat')
+                                <input type="text" name="kode_barang"
+                                    class="form-control @error('kode_barang') is-invalid @enderror" id="kode_barang"
+                                    placeholder="Kode Barang..." value="{{ old('kode_barang') }}">
+                                @error('kode_barang')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('nomor_surat') }}
+                                        {{ $errors->first('kode_barang') }}
                                     </div>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="judul_surat" class="col-sm-2 col-form-label">Judul Surat</label>
+                            <label for="judul_surat" class="col-sm-2 col-form-label">Nama Barang</label>
                             <div class="col-sm-10">
-                                <input type="text" name="judul_surat"
-                                    class="form-control @error('judul_surat') is-invalid @enderror" id="judul_surat"
-                                    placeholder="Judul Surat..." value="{{ old('judul_surat') }}">
-                                @error('judul_surat')
+                                <input type="text" name="nama_barang"
+                                    class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang"
+                                    placeholder="Nama Barang..." value="{{ old('nama_barang') }}">
+                                @error('nama_barang')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('judul_surat') }}
+                                        {{ $errors->first('nama_barang') }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="tanggal_pembelian"
+                                    class="form-control @error('tanggal_pembelian') is-invalid @enderror" id="tanggal_pembelian"
+                                    value="{{ old('tanggal_pembelian') }}">
+                                @error('tanggal_pembelian')
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('tanggal_pembelian') }}
                                     </div>
                                 @enderror
                             </div>
@@ -44,49 +57,21 @@
                             <div class="col-sm-10">
                                 <select class="custom-select @error('kategori') is-invalid @enderror" name="kategori">
                                     <option @if (old('kategori') == '') selected @endif>Pilih</option>
-                                    <option value="permohonan" @if (old('kategori') == 'permohonan') selected @endif>Permohonan
+                                    <option value="handphone" @if (old('kategori') == 'handphone') selected @endif>Handphone
                                     </option>
-                                    <option value="undangan" @if (old('kategori') == 'undangan') selected @endif>Undangan
+                                    <option value="laptop" @if (old('kategori') == 'laptop') selected @endif>Laptop
                                     </option>
-                                    <option value="pemberitahuan" @if (old('kategori') == 'pemberitahuan') selected @endif>
-                                        Pemberitahuan</option>
-                                    <option value="permintaan" @if (old('kategori') == 'permintaan') selected @endif>Permintaan
+                                    <option value="pakaian pria" @if (old('kategori') == 'pakaian pria') selected @endif>
+                                        Pakaian Pria</option>
+                                    <option value="pakaian wanita" @if (old('kategori') == 'pakaian wanita') selected @endif>Pakaian Wanita
                                     </option>
-                                    <option value="tugas" @if (old('kategori') == 'tugas') selected @endif>Tugas</option>
-                                    <option value="rekomendasi" @if (old('kategori') == 'rekomendasi') selected @endif>
-                                        Rekomendasi</option>
-                                    <option value="pengantar" @if (old('kategori') == 'pengantar') selected @endif>Pengantar
-                                    </option>
+                                    <option value="kebutuhan rumah tangga" @if (old('kategori') == 'kebutuhan rumah tangga') selected @endif>Kebutuhan Rumah Tangga</option>
+                                    <option value="makanan" @if (old('kategori') == 'makanan') selected @endif>
+                                        Makanan</option>
                                 </select>
                                 @error('kategori')
                                     <div class="invalid-feedback">
                                         {{ $errors->first('kategori') }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="asal_surat" class="col-sm-2 col-form-label">Asal Surat</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="asal_surat"
-                                    class="form-control @error('asal_surat') is-invalid @enderror" id="asal_surat"
-                                    placeholder="Asal Surat..." value="{{ old('asal_surat') }}">
-                                @error('asal_surat')
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('asal_surat') }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Masuk</label>
-                            <div class="col-sm-10">
-                                <input type="date" name="tanggal_masuk"
-                                    class="form-control @error('tanggal_masuk') is-invalid @enderror" id="tanggal_masuk"
-                                    value="{{ old('tanggal_masuk') }}">
-                                @error('tanggal_masuk')
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('tanggal_masuk') }}
                                     </div>
                                 @enderror
                             </div>
@@ -104,15 +89,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="customFile" class="col-sm-2 col-form-label">File</label>
+                            <label for="customFile" class="col-sm-2 col-form-label">Foto</label>
                             <div class="col-sm-10">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('lampiran') is-invalid @enderror"
-                                        id="customFile" name="lampiran">
+                                    <input type="file" class="custom-file-input @error('foto') is-invalid @enderror"
+                                        id="customFile" name="foto">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
-                                    @error('lampiran')
+                                    @error('foto')
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('lampiran') }}
+                                            {{ $errors->first('foto') }}
                                         </div>
                                     @enderror
                                 </div>

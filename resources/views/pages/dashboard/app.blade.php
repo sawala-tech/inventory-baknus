@@ -12,7 +12,7 @@
                 </div>
                 <div class="mx-3">
                     <h5 class="text-secondary mb-0">Data Barang</h5>
-                    <h4 class="m-0">{{ $countSuratMasuk }}</h4>
+                    <h4 class="m-0">{{ $countBarang }}</h4>
                 </div>
             </div>
         </div>
@@ -35,10 +35,10 @@
                     @foreach ($latest as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item['nomor_surat'] }}</td>
-                            <td>{{ $item['judul_surat'] }}</td>
+                            <td>{{ $item['kode_barang'] }}</td>
+                            <td>{{ $item['nama_barang'] }}</td>
+                            <td>{{ $item['tanggal_pembelian'] }}</td>
                             <td>{{ $item['kategori'] }}</td>
-                            <td>{{ $item['tanggal_surat'] }}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -20,29 +20,42 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group row">
-                            <label for="nomor_surat" class="col-sm-2 col-form-label">Nomor Surat</label>
+                            <label for="kode_barang" class="col-sm-2 col-form-label">Kode Barang</label>
                             <div class="col-sm-10">
-                                <input type="text" name="nomor_surat"
-                                    class="form-control @error('nomor_surat') is-invalid @enderror" id="nomor_surat"
-                                    value="{{ old('nomor_surat') ? old('nomor_surat') : $nomor_surat }}"
-                                    placeholder="Nomor Surat...">
-                                @error('nomor_surat')
+                                <input type="text" name="kode_barang"
+                                    class="form-control @error('kode_barang') is-invalid @enderror" id="kode_barang"
+                                    value="{{ old('kode_barang') ? old('kode_barang') : $kode_barang }}"
+                                    placeholder="Kode Barang...">
+                                @error('kode_barang')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('nomor_surat') }}
+                                        {{ $errors->first('kode_barang') }}
                                     </div>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="judul_surat" class="col-sm-2 col-form-label">Judul Surat</label>
+                            <label for="nama_barang" class="col-sm-2 col-form-label">Nama Barang</label>
                             <div class="col-sm-10">
-                                <input type="text" name="judul_surat"
-                                    class="form-control @error('judul_surat') is-invalid @enderror" id="judul_surat"
-                                    value="{{ old('judul_surat') ? old('judul_surat') : $judul_surat }}"
-                                    placeholder="Judul Surat...">
-                                @error('judul_surat')
+                                <input type="text" name="nama_barang"
+                                    class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang"
+                                    value="{{ old('nama_barang') ? old('nama_barang') : $nama_barang }}"
+                                    placeholder="Nama Barang...">
+                                @error('nama_barang')
                                     <div class="invalid-feedback">
-                                        {{ $errors->first('judul_surat') }}
+                                        {{ $errors->first('nama_barang') }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tanggal_pembelian" class="col-sm-2 col-form-label">Tanggal Pembelian</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="tanggal_pembelian"
+                                    class="form-control @error('tanggal_pembelian') is-invalid @enderror" id="tanggal_pembelian"
+                                    value="{{ old('tanggal_pembelian') ? old('tanggal_pembelian') : $tanggal_pembelian }}">
+                                @error('tanggal_pembelian')
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('tanggal_pembelian') }}
                                     </div>
                                 @enderror
                             </div>
@@ -65,33 +78,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="asal_surat" class="col-sm-2 col-form-label">Asal Surat</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="asal_surat"
-                                    class="form-control @error('asal_surat') is-invalid @enderror" id="asal_surat"
-                                    value="{{ old('asal_surat') ? old('asal_surat') : $asal_surat }}"
-                                    placeholder="Asal Surat...">
-                                @error('asal_surat')
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('asal_surat') }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Masuk</label>
-                            <div class="col-sm-10">
-                                <input type="date" name="tanggal_masuk"
-                                    class="form-control @error('tanggal_masuk') is-invalid @enderror" id="tanggal_masuk"
-                                    value="{{ old('tanggal_masuk') ? old('tanggal_masuk') : $tanggal_masuk }}">
-                                @error('tanggal_masuk')
-                                    <div class="invalid-feedback">
-                                        {{ $errors->first('tanggal_masuk') }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                             <div class="col-sm-10">
                                 <textarea name="keterangan" class="form-control @error('keterangan') is-invalid @enderror" id="keterangan"
@@ -104,12 +90,17 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="customFile" class="col-sm-2 col-form-label">File</label>
+                            <label for="customFile" class="col-sm-2 col-form-label">Foto</label>
                             <div class="col-sm-10">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile" name="lampiran">
-                                    <label class="custom-file-label" for="customFile" value="{{ $file_surat }}">Choose
+                                    <input type="file" class="custom-file-input @error('foto') is-invalid @enderror" id="customFile" name="foto">
+                                    <label class="custom-file-label" for="customFile" value="{{ $foto }}">Choose
                                         file</label>
+                                    @error('foto')
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('foto') }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

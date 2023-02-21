@@ -31,23 +31,21 @@
             <thead class='text-secondary'>
                 <tr>
                     <th class="text-uppercase">#</th>
-                    <th class="text-uppercase">Nomor surat</th>
-                    <th class="text-uppercase">judul surat</th>
+                    <th class="text-uppercase">Kode Barang</th>
+                    <th class="text-uppercase">Nama Barang</th>
+                    <th class="text-uppercase">Tanggal Pembelian</th>
                     <th class="text-uppercase">kategori</th>
-                    <th class="text-uppercase">asal surat</th>
-                    <th class="text-uppercase">Tanggal diterima</th>
                     <th class="text-uppercase">keterangan</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($suratMasuk as $item)
+                @foreach ($barang as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nomor_surat }}</td>
-                        <td>{{ $item->judul_surat }}</td>
+                        <td>{{ $item->kode_barang }}</td>
+                        <td>{{ $item->nama_barang }}</td>
+                        <td>{{ $item->tanggal_pembelian }}</td>
                         <td>{{ $item->kategori }}</td>
-                        <td>{{ $item->asal_surat }}</td>
-                        <td>{{ $item->tanggal_masuk }}</td>
                         <td>{{ $item->keterangan }}</td>
                     </tr>
                 @endforeach

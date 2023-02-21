@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SuratMasuk;
+use App\Models\barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use App\Exports\suratMasukExport;
+use App\Exports\barangExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class BarangController extends Controller
@@ -22,15 +22,15 @@ class BarangController extends Controller
     public function index()
     {
         //get data from database with pagination
-        $suratMasuk = SuratMasuk::all();
+        $barang = barang::all();
         //return to view
-        return view('pages.barang.app', compact('suratMasuk') , ['currentPath' => $this->currentPath]);
+        return view('pages.barang.app', compact('barang') , ['currentPath' => $this->currentPath]);
     }
     public function detail($id)
     {
-        $suratMasuk = SuratMasuk::find($id);
+        $barang = barang::find($id);
         //return to view
-        return view('pages.barang.detail', compact('suratMasuk'), ['currentPath' => $this->currentPath]);
+        return view('pages.barang.detail', compact('barang'), ['currentPath' => $this->currentPath]);
     }
 
     /**
@@ -51,35 +51,32 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //validate data
-        //validate kategori enum
+        //validate request
         $this->validate($request, [
-            'nomor_surat' => 'required',
-            'judul_surat' => 'required',
-            'kategori' => 'required|in:permohonan,undangan,pemberitahuan,permintaan,tugas,rekomendasi,pengantar',
-            'tanggal_masuk' => 'required',
-            'asal_surat' => 'required',
+            'kode_barang' => 'required',
+            'nama_barang' => 'required',
+            'tanggal_pembelian' => 'required',
+            'kategori' => 'required|in:handphone,laptop,pakaian pria,pakaian wanita,kebutuhan rumah tangga,makanan',
             'keterangan' => 'required',
-            'lampiran' => 'required|mimes:pdf,doc,docx'
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         //store data from request
-        $suratMasuk = new SuratMasuk;
-        $suratMasuk->nomor_surat = $request->get('nomor_surat');
-        $suratMasuk->judul_surat = $request->get('judul_surat');
-        $suratMasuk->kategori = $request->get('kategori');
-        $suratMasuk->tanggal_masuk = $request->get('tanggal_masuk');
-        $suratMasuk->asal_surat = $request->get('asal_surat');
-        $suratMasuk->keterangan = $request->get('keterangan');
-        if($request->hasFile('lampiran')){
-            $filenameWithExt = $request->file('lampiran')->getClientOriginalName();
+        $barang = new barang;
+        $barang->kode_barang = $request->kode_barang;
+        $barang->nama_barang = $request->nama_barang;
+        $barang->tanggal_pembelian = $request->tanggal_pembelian;
+        $barang->kategori = $request->kategori;
+        $barang->keterangan = $request->keterangan;
+        if($request->hasFile('foto')){
+            $filenameWithExt = $request->file('foto')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('lampiran')->getClientOriginalExtension();
+            $extension = $request->file('foto')->getClientOriginalExtension();
             $filenameSimpan = $filename.'_'.time().'.'.$extension;
-            $path = $request->file('lampiran')->storeAs('public/lampiran', $filenameSimpan);
-            $suratMasuk->file_surat = $filenameSimpan;
+            $path = $request->file('foto')->storeAs('public/lampiran', $filenameSimpan);
+            $barang->foto = $filenameSimpan;
         }
-        $suratMasuk->save();
+        $barang->save();
 
         Session::flash('message', 'Data berhasil disimpan!');
         return Redirect::to('barang');
@@ -99,73 +96,72 @@ class BarangController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SuratMasuk  $suratMasuk
+     * @param  \App\Models\barang  $suratMasuk
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $suratMasuk = SuratMasuk::find($id);
-        $datakategory = ['permohonan','undangan','pemberitahuan','permintaan','tugas','rekomendasi','pengantar'];
-        return view('pages/barang.edit', $suratMasuk, ['datakategory' => $datakategory, 'currentPath' => $this->currentPath]);
+        $barang = barang::find($id);
+        $datakategory = ['handphone', 'laptop', 'pakaian pria', 'pakaian wanita','kebutuhan rumah tangga','makanan'];
+        return view('pages/barang.edit', $barang, ['datakategory' => $datakategory, 'currentPath' => $this->currentPath]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SuratMasuk  $suratMasuk
+     * @param  \App\Models\barang  $suratMasuk
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {   
         $this->validate($request, [
-            'nomor_surat' => 'required',
-            'judul_surat' => 'required',
-            'kategori' => 'required|in:permohonan,undangan,pemberitahuan,permintaan,tugas,rekomendasi,pengantar',
-            'tanggal_masuk' => 'required',
-            'asal_surat' => 'required',
+            'kode_barang' => 'required',
+            'nama_barang' => 'required',
+            'tanggal_pembelian' => 'required',
+            'kategori' => 'required|in:handphone,laptop,pakaian pria,pakaian wanita,kebutuhan rumah tangga,makanan',
             'keterangan' => 'required',
-            'lampiran'=>'mimes:pdf,doc,docx'
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-        $suratMasuk = SuratMasuk::find($id);
-        $suratMasuk->nomor_surat = $request->get('nomor_surat');
-        $suratMasuk->judul_surat = $request->get('judul_surat');
-        $suratMasuk->kategori = $request->get('kategori');
-        $suratMasuk->tanggal_masuk = $request->get('tanggal_masuk');
-        $suratMasuk->asal_surat = $request->get('asal_surat');
-        $suratMasuk->keterangan = $request->get('keterangan');
-        if($request->hasFile('lampiran')){
-            $filenameWithExt = $request->file('lampiran')->getClientOriginalName();
+        $barang = barang::find($id);
+        $barang->kode_barang = $request->kode_barang;
+        $barang->nama_barang = $request->nama_barang;
+        $barang->tanggal_pembelian = $request->tanggal_pembelian;
+        $barang->kategori = $request->kategori;
+        $barang->keterangan = $request->keterangan;
+        
+        if($request->hasFile('foto')){
+            $filenameWithExt = $request->file('foto')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('lampiran')->getClientOriginalExtension();
+            $extension = $request->file('foto')->getClientOriginalExtension();
             $filenameSimpan = $filename.'_'.time().'.'.$extension;
-            if($filenameWithExt != $suratMasuk->file_surat){
+            if($filenameWithExt != $barang->foto){
                 //delete old file
-                Storage::delete('public/lampiran/'.$suratMasuk->file_surat);
+                Storage::delete('public/lampiran/'.$barang->foto);
                 $path = $request->file('lampiran')->storeAs('public/lampiran', $filenameSimpan);
             }
-            $suratMasuk->file_surat = $filenameSimpan;
+            $barang->foto = $filenameSimpan;
         }
 
-        $suratMasuk->save();
+        $barang->save();
 
         Session::flash('message', 'Data berhasil di update!');
-        return Redirect::to('barang/'.$suratMasuk->id.'/edit');
+        return Redirect::to('barang/'.$barang->id.'/edit');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SuratMasuk  $suratMasuk
+     * @param  \App\Models\barang  $suratMasuk
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
          //delete data
-         $suratMasuk = suratMasuk::find($id);
-         $suratMasuk->delete();
-         if($suratMasuk->file_surat !=''||$suratMasuk->file_surat !=null){
-             Storage::delete('public/lampiran/'.$suratMasuk->file_surat);
+         $barang = barang::find($id);
+         $barang->delete();
+         if($barang->foto !=''||$barang->foto !=null){
+             Storage::delete('public/lampiran/'.$barang->foto);
          }
  
          Session::flash('message', 'Data berhasil dihapus!');
@@ -174,8 +170,8 @@ class BarangController extends Controller
 
     public function laporan()
     {
-        $suratMasuk = SuratMasuk::all();
-        return view('pages.barang.laporan', compact('suratMasuk'), ['currentPath' => 'laporan']);
+        $barang = barang::all();
+        return view('pages.barang.laporan', compact('barang'), ['currentPath' => 'laporan']);
     }
 
     public function exportExcel()
@@ -183,6 +179,6 @@ class BarangController extends Controller
         //get params from url search
         $params = request()->query();
         $search = $params['search'] ?? '';
-        return Excel::download(new SuratMasukExport($search), 'barang.xlsx'); 
+        return Excel::download(new barangExport($search), 'barang.xlsx'); 
     }
 }
