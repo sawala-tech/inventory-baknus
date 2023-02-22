@@ -102,3 +102,9 @@ $(document).ready(function () {
 setTimeout(function () {
     document.getElementById("alert-div").style.display = "none";
 }, 3000);
+
+$("#customFile").on("change", function (e) {
+    var fileName = $(this).val();
+    fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+    $(this).next(".custom-file-label").html(fileName);
+});

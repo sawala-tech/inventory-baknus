@@ -138,7 +138,7 @@ class BarangController extends Controller
             if($filenameWithExt != $barang->foto){
                 //delete old file
                 Storage::delete('public/lampiran/'.$barang->foto);
-                $path = $request->file('lampiran')->storeAs('public/lampiran', $filenameSimpan);
+                $path = $request->file('foto')->storeAs('public/lampiran', $filenameSimpan);
             }
             $barang->foto = $filenameSimpan;
         }

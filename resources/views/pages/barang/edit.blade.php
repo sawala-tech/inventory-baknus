@@ -103,13 +103,17 @@
                                             {{ $errors->first('foto') }}
                                         </div>
                                     @enderror
+                                    @if ($foto)
+                                        <small class="text-secondary">
+                                            current file:
+                                            <a href="{{ '/storage/lampiran/' . $foto }}"
+                                                target="_blank">{{ $foto }}</a>
+                                        </small>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-3">
-                        
-                    </div> --}}
                 </div>
                 <div class="d-flex justify-content-between align-items-center mt-3">
                     <a href="/barang" class="btn btn-outline-gray">Cancel</a>

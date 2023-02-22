@@ -103,3 +103,20 @@ button:focus {
 .cursor-pointer {
     cursor: pointer !important;
 }
+
+@media print {
+
+    aside,
+    header {
+        display: none;
+    }
+
+    #printableArea {
+        background-color: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+    }
+
+}

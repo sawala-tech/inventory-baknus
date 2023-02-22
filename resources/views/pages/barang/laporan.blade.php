@@ -7,7 +7,7 @@
         </div>
     @endif
 
-    <h2 class="fs-3 fw-bolder">Laporan Barang</h2>
+    <h2>Laporan Barang</h2>
     <div class="container-fluid p-0 my-5">
         <div class="justify-content-between mb-3 d-flex">
             <a href="/export/barang"
@@ -23,6 +23,7 @@
                 <i class="fas fa-search fa-sm position-absolute mt-2 pt-1 ml-3 text-secondary"></i>
                 <input type="text" name="search" class="form-control pl-5 text-secondary"
                     id="search-input"placeholder="Cari Barang" />
+            </form>
         </div>
 
     </div>
@@ -51,6 +52,5 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
     </div>
 @endsection
