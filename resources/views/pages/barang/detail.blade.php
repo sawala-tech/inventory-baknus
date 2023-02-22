@@ -29,7 +29,7 @@
                 <div class="row w-100 border-bottom py-2 mt-2 d-print-none">
                     <div class="col-2">Foto Barang</div>
                     <div class="col-10">
-                        @if ($barang->foto_barang)
+                        @if ($barang->foto)
                             <img src="{{ asset('/storage/lampiran/' . $barang->foto) }}" alt=""
                                 class="w-25 shadow-sm" srcset="">
                         @else
