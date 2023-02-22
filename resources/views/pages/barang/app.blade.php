@@ -19,7 +19,6 @@
                     Tambah Barang
                 </span>
             </button>
-            </a>
 
             <div class="w-auto position-relative">
                 <i class="fas fa-search fa-sm position-absolute mt-2 pt-1 ml-3 text-secondary"></i>
@@ -33,12 +32,12 @@
                 <thead class='text-secondary'>
                     <tr>
                         <th class="text-uppercase">#</th>
-                        <th class="text-uppercase">Nomor surat</th>
-                        <th class="text-uppercase">judul surat</th>
-                        <th class="text-uppercase">kategori</th>
-                        <th class="text-uppercase">asal surat</th>
-                        <th class="text-uppercase">Tanggal diterima</th>
+                        <th class="text-uppercase">Kode Barang</th>
+                        <th class="text-uppercase">Nama Barang</th>
+                        <th class="text-uppercase">Tanggal Pembelian</th>
+                        <th class="text-uppercase">Kategori</th>
                         <th class="text-uppercase">keterangan</th>
+                        <th class="text-uppercase">Foto barang</th>
                         <th class="text-uppercase">Aksi</th>
                     </tr>
                 </thead>
@@ -52,8 +51,12 @@
                             <td>{{ $item->kategori }}</td>
                             <td>{{ $item->keterangan }}</td>
                             <td>
-                                <img src="{{ asset('/storage/lampiran/' . $item->foto) }}" style="width: 80px"
-                                    alt="" />
+                                @if ($item->foto)
+                                    <img src="{{ asset('/storage/lampiran/' . $item->foto) }}" style="width: 80px"
+                                        alt="" />
+                                @else
+                                    -
+                                @endif
                             </td>
                             <td class="d-flex flex-row">
                                 <button onclick="window.location.href='/barang/detail/{{ $item->id }}'"
